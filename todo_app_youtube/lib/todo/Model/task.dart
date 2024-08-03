@@ -5,12 +5,12 @@ enum TaskStatus { todo, inProgress, completed }
 enum TaskPriority { high, low }
 
 class Task {
-  int id;
-  String title;
-  String description;
-  String assign;
-  TaskPriority priority;
-  TaskStatus status;
+  final int id;
+  final String title;
+  final String description;
+  final String assign;
+  final TaskPriority priority;
+  final TaskStatus status;
 
   Task(
       {required this.id,
@@ -23,10 +23,25 @@ class Task {
   factory Task.newTask() {
     return Task(
         id: 1,
-        title: 'Nombre de Tarea',
+        title: 'Name Task',
         description: 'Agrega una descripción ',
         priority: TaskPriority.low,
         assign: 'Asigna a un comapañero');
+  }
+
+  Task copyWith(
+      {String? title,
+      String? description,
+      String? assign,
+      TaskPriority? priority,
+      TaskStatus? status}) {
+    return Task(
+        id: id,
+        title: title ?? this.title,
+        description: description ?? this.description,
+        assign: assign ?? this.assign,
+        priority: priority ?? this.priority,
+        status: status ?? this.status);
   }
 
   factory Task.priority(TaskPriority priority) {
@@ -83,46 +98,6 @@ class Task {
 }
 
 main() {
-  var task1 = Task(
-      id: 1,
-      title: 'Lavarme mis dientes',
-      description: 'description 1 ',
-      priority: TaskPriority.high,
-      assign: 'Victor');
-
-  print(task1.description);
-  print(task1.status.name);
-
-  task1.status = TaskStatus.completed;
-
-  switch (task1.status) {
-    case TaskStatus.todo:
-      print('Nueva tarea');
-    case TaskStatus.inProgress:
-      print('Se esta realizando la tarea');
-    case TaskStatus.completed:
-      print('Se completo la tarea');
-  }
-
-  var task2 = Task.newTask();
-  print(task2.title);
-
-  var task3 = Task.priority(TaskPriority.high);
-  print('Tarea asignada al ${task3.assign}');
-
-  String taskJson = '''
-    {
-      "id": 5,
-      "title": "Final Task",
-      "description": "This is the final task description",
-      "assign": "Dave",
-      "status": "inProgress"
-    }
-  ''';
-
-  var task4 = Task.fromJson(taskJson);
-  print(task4.description);
-
   String tasksJson = '''
   [
     {
@@ -161,4 +136,15 @@ main() {
   for (var task in task5) {
     print(task.title);
   }
+
+  var task6 = Task(
+      id: 6,
+      title: "Title 6",
+      description: "description 6",
+      priority: TaskPriority.low,
+      status: TaskStatus.todo,
+      assign: "Admin");
+  print(task6.title);
+  task6 = task6.copyWith(title: "Title 666");   
+
 }

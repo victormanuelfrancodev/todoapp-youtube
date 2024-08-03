@@ -13,7 +13,7 @@ class TaskWidget extends StatelessWidget {
         child: ListTile(
       leading: icon,
       title: Text(title),
-      subtitle: Text(title),
+      subtitle: Text(subtitle),
     ));
   }
 }
