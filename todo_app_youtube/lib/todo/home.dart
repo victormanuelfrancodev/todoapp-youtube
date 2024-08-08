@@ -7,7 +7,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     String tasksJson = '''
+    String tasksJson = '''
   [
     {
       "id": 2,
@@ -41,24 +41,20 @@ class Home extends StatelessWidget {
   ''';
     final taskList = Task.listFromJson(tasksJson);
 
-    final value5 = 5;
-    
-    final value6 = 6;
-
-    void readData(){
-      final plus = value5 + value6;
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('To-Do App'),
       ),
       body: ListView.builder(
-        itemCount: taskList.length,
-        itemBuilder: (BuildContext context, int index) {
-          final task = taskList[index];
-          return TaskWidget(icon: const Icon(Icons.task), title: task.title, subtitle: task.description,);
-        }),
+          itemCount: taskList.length,
+          itemBuilder: (BuildContext context, int index) {
+            final task = taskList[index];
+            return TaskWidget(
+              icon: const Icon(Icons.task),
+              title: task.title,
+              subtitle: task.description,
+            );
+          }),
     );
   }
 }
