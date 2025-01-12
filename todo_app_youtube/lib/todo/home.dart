@@ -4,6 +4,8 @@ import 'package:todo_app_youtube/todo/MyWidgets/task_widget.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
+  
+  
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +42,7 @@ class Home extends StatelessWidget {
   ]
   ''';
     final taskList = Task.listFromJson(tasksJson);
+
 
     return Scaffold(
       appBar: AppBar(
