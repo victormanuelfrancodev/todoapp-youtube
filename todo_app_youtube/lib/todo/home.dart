@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app_youtube/todo/Model/task.dart';
 import 'package:todo_app_youtube/todo/MyWidgets/task_widget.dart';
+import 'package:todo_app_youtube/todo/provider/theme_provider.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -43,6 +44,11 @@ class Home extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(onPressed: (){
+          final themeProvider = ThemeProvider.of(context);
+          var theme = themeProvider.themeApp == ThemeApp.light ? ThemeApp.dark: ThemeApp.light;
+          themeProvider.onChangeTheme(theme);  
+        }, icon: Icon(ThemeProvider.of(context).themeApp == ThemeApp.light ? Icons.dark_mode : Icons.sunny)),
         title: const Text('To-Do App'),
       ),
       body: ListView.builder(
